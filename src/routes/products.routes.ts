@@ -1,45 +1,72 @@
 import {Request, Response, NextFunction} from 'express'
 import {Router, response} from 'express'
 import {uuid} from 'uuidv4'
+import {getRepository} from 'typeorm'
+import Product from '../models/Product'
+import CreateProductService from '../services/CreateProductService'
 
 const ProductRouter = Router()
 
-interface DTO{
+// interface DTO{
 
-  id: string,
-  nameProduct: string,
-  price: number
+//   id: string,
+//   nameProduct: string,
+//   price: number
 
-}
+// }
 
-const products : DTO[] = []
+// const products : DTO[] = []
 
-ProductRouter.get('/', (request, response) => {
+ProductRouter.get('/', async (request, response) => {
 
-  return response.json(products)
+    const Instancia = getRepository(Product)
+
+   const AllProducts = await Instancia.find()
+
+   return response.json(AllProducts)
 
 })
 
 ProductRouter.post('/', (request: Request, response: Response) => {
 
-    const {nameProduct, brand , price} = request.body
+    const {name, price, brand_id} = request.body
+
+    const Instancia = new CreateProductService()
+
+    try{
+
+
+     const newProduct = Instancia.Execute({name, price, brand_id})
+
+
+      return response.json(newProduct) 
+
+    }
+    catch(err){
+
+
+            return response.json({err: 'Ocorreu algo'})
+
+    }
     
+
+
       //  request.user.id = 'teste'
 
       // console.log(request.user.id)
 
-    const NewProduct = {
+    // const NewProduct = {
       
-      id: uuid(),
-      nameProduct,
-      brand,
-      price
+    //   id: uuid(),
+    //   nameProduct,
+    //   brand,
+    //   price
     
-    }
+    // }
 
-    products.push(NewProduct)
+    // products.push(NewProduct)
 
-    return response.json(NewProduct)
+    // return response.json(NewProduct)
 
 })
 
