@@ -20,7 +20,7 @@ class Product {
 
     @ManyToOne(() => Brand)
     @JoinColumn( {name: 'brand_id'} )
-    brandIdentity : Brand
+    Brand : Brand
     
 
     @CreateDateColumn()
