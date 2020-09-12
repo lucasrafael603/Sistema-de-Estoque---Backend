@@ -1,5 +1,5 @@
-//import {uuid} from 'uuidv4'
-import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, ManyToOne, JoinColumn } from 'typeorm'
+import {uuid} from 'uuidv4'
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, ManyToOne, JoinColumn, OneToMany } from 'typeorm'
 
 import Brand from './Brand'
 
@@ -16,11 +16,21 @@ class Product {
     price: number
 
     @Column()
-    brand_id: string
+    brandId : string
+    // brand_id: string
+
+
+  
+
+    // @ManyToOne(type => Brand, products => Product)
+    // //@JoinColumn( {name: 'brand_id', referencedColumnName: 'id' } )
+    // Brande : Brand
 
     @ManyToOne(() => Brand)
-    @JoinColumn( {name: 'brand_id'} )
-    Brand : Brand
+    @JoinColumn({ name: 'brandId'})
+    Brand: Brand
+
+
     
 
     @CreateDateColumn()

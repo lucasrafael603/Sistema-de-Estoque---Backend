@@ -9,7 +9,7 @@ export class Product1599697360512 implements MigrationInterface {
              columns: [{ name: 'id', type: 'uuid', isPrimary: true, generationStrategy: 'uuid', default: 'uuid_generate_v4()'  },
              {name: 'name', type: 'varchar', isNullable: false},
              {name: 'price', type: 'int', isNullable: false},
-             {name: 'brand_id', type: 'uuid', isNullable: true}, 
+             {name: 'brandId', type: 'uuid', isNullable: false}, 
              {name: 'created_at', type: 'timestamp', default: 'now()',},
              {name: 'updated_at', type: 'timestamp', default: 'now()',}, 
              

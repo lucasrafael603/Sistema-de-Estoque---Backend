@@ -6,8 +6,8 @@ export class ProductForeignKey1599783332203 implements MigrationInterface {
 
         await queryRunner.createForeignKey('Product', new TableForeignKey(
             {
-                name: 'brandIdentity',
-                columnNames: ['brand_id'],
+                name: 'BrandIdentity',
+                columnNames: ['brandId'],
                 referencedColumnNames: ['id'],
                 referencedTableName: 'Brand',
                 onDelete: 'SET NULL',
@@ -22,7 +22,7 @@ export class ProductForeignKey1599783332203 implements MigrationInterface {
 
     public async down(queryRunner: QueryRunner): Promise<void> {
 
-        await queryRunner.dropForeignKey('Product','brandIdentity')
+        await queryRunner.dropForeignKey('Product','BrandIdentity')
 
     }
 

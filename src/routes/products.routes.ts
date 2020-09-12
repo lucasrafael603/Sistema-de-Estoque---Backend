@@ -27,16 +27,16 @@ ProductRouter.get('/', async (request, response) => {
 
 })
 
-ProductRouter.post('/', (request: Request, response: Response) => {
+ProductRouter.post('/', async (request: Request, response: Response) => {
 
-    const {name, price, brand_id} = request.body
+    const {name, price, brandId} = request.body
 
     const Instancia = new CreateProductService()
 
     try{
 
 
-     const newProduct = Instancia.Execute({name, price, brand_id})
+     const newProduct = await Instancia.Execute({name, price, brandId})
 
 
       return response.json(newProduct) 

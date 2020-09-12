@@ -1,5 +1,6 @@
 //import {uuid} from 'uuidv4'
-import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn } from 'typeorm'
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, OneToMany } from 'typeorm'
+import Product from './Product'
 
 
 @Entity('Brand')
@@ -9,6 +10,9 @@ class Brand {
 
     @Column()
     name: string
+
+    // @OneToMany(type => Product, Brande => Brand )
+    // products: Product[]
 
     @CreateDateColumn()
     created_at: Date
