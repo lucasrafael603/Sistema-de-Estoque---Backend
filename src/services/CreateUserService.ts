@@ -1,11 +1,12 @@
 import UserRepository from '../repositories/UserRepository'
+import {getRepository} from 'typeorm'
 import {hash} from 'bcryptjs'
+import User from '../models/User'
 
 
 interface DTOUser{
 
   name: string
-  age: number
   email: string
   password: string
 
@@ -17,7 +18,12 @@ export default class CreateUserService{
 
      async Execute({name, email, password}: DTOUser ) {
 
-          if(email){
+        const InstanciaNew = getRepository(User)
+
+       const CheckExists = await InstanciaNew.findOne({where: {email}})
+
+
+          if(CheckExists){
 
             throw new Error('Email ja cadastrado')
 
@@ -26,11 +32,11 @@ export default class CreateUserService{
          
           const hashedPassword = await hash(password, 8)
 
-          const Instancia = new UserRepository()
+          //const Instancia = new UserRepository()
 
-          const newUser = Instancia.create({name, email, password: hashedPassword})
+          const newUser = InstanciaNew.create({name, email, password: hashedPassword})
           
-          await Instancia.save(newUser)
+          await InstanciaNew.save(newUser)
 
           return newUser
 
