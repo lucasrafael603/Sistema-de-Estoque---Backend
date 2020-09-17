@@ -27,6 +27,8 @@ BrandRouter.get('/', async (request, response) => {
 
     const AllBrands = await Instancia.find()
 
+    console.log(AllBrands)
+
 
     return response.json(AllBrands)
 

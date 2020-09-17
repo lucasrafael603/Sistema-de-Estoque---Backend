@@ -9,7 +9,7 @@ interface DTOProduct{
 
 name: string
 price: number
-brandId: string
+brandName: string
 
 }
 
@@ -17,10 +17,24 @@ brandId: string
 export default class CreateProductService{
 
 
-      async Execute({name, price, brandId}: DTOProduct ){
+      async Execute({name, price, brandName}: DTOProduct ){
 
           const InstanciaProduct = getRepository(Product)
           const InstanciaBrand = getRepository(Brand)
+
+
+          
+
+          const BrandFinded = await InstanciaBrand.findOne({where: {name: brandName} } )
+
+          if(!BrandFinded){
+
+            throw new Error('Brand Not exists')
+
+          }
+
+          const brandId = BrandFinded?.id
+          
         
         const ProductFinded = await InstanciaProduct.findOne({where: {name}})
         //const BrandFinded = await InstanciaBrand.find()
@@ -36,7 +50,7 @@ export default class CreateProductService{
 
         // }
         
-          console.log(ProductFinded)
+          //console.log(ProductFinded)
        
 
         if(ProductFinded && ProductFindedBrand){

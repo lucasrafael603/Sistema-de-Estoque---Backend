@@ -23,20 +23,23 @@ ProductRouter.get('/', async (request, response) => {
 
    const AllProducts = await Instancia.find()
 
+
    return response.json(AllProducts)
 
 })
 
 ProductRouter.post('/', async (request: Request, response: Response) => {
 
-    const {name, price, brandId} = request.body
+    const {name, price, brandName} = request.body
 
     const Instancia = new CreateProductService()
 
     try{
 
 
-     const newProduct = await Instancia.Execute({name, price, brandId})
+     const newProduct = await Instancia.Execute({name, price, brandName})
+
+     //console.log(newProduct)
 
 
       return response.json(newProduct) 
