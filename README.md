@@ -7,7 +7,7 @@
 ##### - Para manipular o banco de dados utilizamos o TypeORM que é compativel com Typescript.
 ##### - O banco de dados que é utilizado é o Postgress que é builded pelo Docker.
 
-#### O sistema de relacionamentos e funcionamento das rotas ja esta completo de acordo com as funcionalidade iniciais do projeto.
+#### O sistema de relacionamentos e funcionamento das rotas ja estão completos de acordo com as funcionalidade iniciais do projeto.
 
 ### Funcionalidades do projeto (Iniciais)
 ##### - Criação de Produtos
